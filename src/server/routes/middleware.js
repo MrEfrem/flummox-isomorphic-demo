@@ -37,8 +37,8 @@ export default function(app) {
 
   // Add jade rendering
   app.use(views(path.join(process.cwd(), 'views'), {
-    cache: true,
-    default: 'jade',
+      cache: true,
+      default: 'ejs'
   }));
 
   app.use(router(app));

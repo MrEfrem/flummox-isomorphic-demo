@@ -27,7 +27,7 @@ let AppHandler = React.createClass({
         </div>
       </div>
     );
-  },
+  }
 
 });
 
