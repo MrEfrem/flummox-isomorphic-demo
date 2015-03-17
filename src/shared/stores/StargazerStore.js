@@ -28,7 +28,7 @@ export default class StargazersStore extends Store {
 
     this.setState({
       stargazersByRepo: this.state.stargazersByRepo.set(key, stargazers),
-      stargazers: this.state.stargazers.merge(stargazersMap),
+      stargazers: this.state.stargazers.merge(stargazersMap)
     });
   }
 

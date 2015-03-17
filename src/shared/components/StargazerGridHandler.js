@@ -18,7 +18,7 @@ let StargazerGrid = React.createClass({
   },
 
   contextTypes: {
-    flux: React.PropTypes.object.isRequired,
+    flux: React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -27,14 +27,14 @@ let StargazerGrid = React.createClass({
     let { owner, repo } = this.getParams();
 
     return {
-      stargazers: this.stargazerStore.getStargazersByRepo(owner, repo),
+      stargazers: this.stargazerStore.getStargazersByRepo(owner, repo)
     };
   },
 
   componentDidMount() {
     this.stargazerStore.addListener('change', this.onStargazerStoreChange);
   },
-  
+
   componentWillUnmount() {
     this.stargazerStore.removeListener('change', this.onStargazerStoreChange);
   },
@@ -43,7 +43,7 @@ let StargazerGrid = React.createClass({
     let { owner, repo } = this.getParams();
 
     this.setState({
-      stargazers: this.stargazerStore.getStargazersByRepo(owner, repo),
+      stargazers: this.stargazerStore.getStargazersByRepo(owner, repo)
     });
   },
 
@@ -54,11 +54,13 @@ let StargazerGrid = React.createClass({
     if (!Immutable.List.isList(stargazers)) return 'No stargazers found';
 
     return (
-      <StargazerGridView
-        stargazers={stargazers}
-        owner={owner}
-        repo={repo}
-      />
+      <DocumentTitle title='Isomorphic Flummox App - Stargazers'>
+        <StargazerGridView
+          stargazers={stargazers}
+          owner={owner}
+          repo={repo}
+        />
+      </DocumentTitle>
     );
   }
 

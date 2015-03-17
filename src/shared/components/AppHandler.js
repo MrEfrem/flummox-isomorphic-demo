@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
+import DocumentTitle from 'react-document-title';
 
 let AppHandler = React.createClass({
 
@@ -23,7 +24,9 @@ let AppHandler = React.createClass({
           </p>
         </header>
         <div>
-          <RouteHandler />
+            <DocumentTitle title='Isomorphic Flummox App'>
+              <RouteHandler />
+            </DocumentTitle>
         </div>
       </div>
     );

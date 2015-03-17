@@ -5,7 +5,7 @@ let StargazerGridView = React.createClass({
 
   getDefaultProps() {
     return {
-      stargazers: Immutable.List(),
+      stargazers: Immutable.List()
     };
   },
 
@@ -19,7 +19,7 @@ let StargazerGridView = React.createClass({
         {items}
       </div>
     );
-  },
+  }
 
 });
 
@@ -38,7 +38,7 @@ let StargazerItem = React.createClass({
         </h1>
       </article>
     );
-  },
+  }
 
 });
 

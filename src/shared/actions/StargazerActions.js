@@ -7,14 +7,14 @@ export default class StargazerActions extends Actions {
     let response = await request
       .get(`https://api.github.com/repos/${owner}/${repo}/stargazers`)
       .query({
-        per_page: 50,
+        per_page: 50
       })
       .exec();
 
     return {
       owner,
       repo,
-      stargazers: response.body,
+      stargazers: response.body
     };
   }
 
