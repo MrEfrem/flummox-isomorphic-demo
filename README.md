@@ -19,7 +19,7 @@ Needs more work, but it should get the basic idea across until I find time to ma
 - iojs
 - superagent
 - babel
-- jade
+- ejs
 - make
 
 ...and more

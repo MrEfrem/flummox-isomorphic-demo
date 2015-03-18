@@ -48,7 +48,7 @@ export default function(app) {
     let title = DocumentTitle.rewind();
 
     /**
-     * Pass the initial render of the app to a Jade template
+     * Pass the initial render of the app to a EJS template
      */
     yield this.render('app', {
       title,
