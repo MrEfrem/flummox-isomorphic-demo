@@ -1,10 +1,15 @@
 import React from 'react';
-import { RouteHandler } from 'react-router';
+import { RouteHandler, Link } from 'react-router';
 import DocumentTitle from 'react-document-title';
+import FluxComponent from 'flummox/component';
 
-let AppHandler = React.createClass({
+export default class AppHandler extends React.Component {
 
   render() {
+    let linkFound;
+    if( !this.props.params.owner ){
+      linkFound = <Link to="stargazerGrid" params={{owner: 'zurb', repo: 'foundation'}}>Example</Link>;
+    }
     return (
       <div>
         <header>
@@ -23,15 +28,16 @@ let AppHandler = React.createClass({
             server.
           </p>
         </header>
+        {linkFound}
         <div>
             <DocumentTitle title='Isomorphic Flummox App'>
-              <RouteHandler />
+              <FluxComponent flux={this.props.flux} params={this.props.params}>
+                <RouteHandler />
+              </FluxComponent>
             </DocumentTitle>
         </div>
       </div>
     );
   }
 
-});
-
-export default AppHandler;
+}

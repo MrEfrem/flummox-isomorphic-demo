@@ -13,7 +13,7 @@ import Flux from '../../../shared/Flux';
 import performRouteHandlerStaticMethod from '../../../shared/performRouteHandlerStaticMethod';
 
 export default function(app) {
-  app.get(/.*/, function *() {
+  app.get(/.*/, function* () {
 
     let { Handler, state } = yield new Promise((resolve, reject) => {
       Router.run(routes, this.url, (Handler, state) => resolve({ Handler, state }));
@@ -36,10 +36,7 @@ export default function(app) {
      * For more info on contexts, see:
      * https://www.tildedave.com/2014/11/15/introduction-to-contexts-in-react-js.html
      */
-    let appString = React.withContext(
-      { flux },
-      () => React.renderToString(<Handler />)
-    );
+    let appString = React.renderToString(<Handler flux={flux} params={state.params}/>);
 
     /**
      * Cool library that lets us extract a title from the React component tree
@@ -53,7 +50,7 @@ export default function(app) {
     yield this.render('app', {
       title,
       appString,
-      env: process.env,
+      env: process.env
     });
   });
 }

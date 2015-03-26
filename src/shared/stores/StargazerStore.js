@@ -12,7 +12,7 @@ export default class StargazersStore extends Store {
 
     this.state = {
       stargazers: Immutable.Map(),
-      stargazersByRepo: Immutable.Map(),
+      stargazersByRepo: Immutable.Map()
     };
   }
 

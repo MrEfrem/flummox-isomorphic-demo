@@ -29,10 +29,7 @@ Router.run(routes, Router.HistoryLocation, (Handler, state) => {
     /**
      * Pass flux instance as context
      */
-    React.withContext(
-      { flux },
-      () => React.render(<Handler />, document.getElementById('app'))
-    );
+    React.render(<Handler flux={flux} params={state.params}/>, document.getElementById('app'));
   }
 
   /**

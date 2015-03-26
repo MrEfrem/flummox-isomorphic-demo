@@ -1,18 +1,20 @@
 import React from 'react';
 import Immutable from 'immutable';
 
-let StargazerGridView = React.createClass({
+export default class StargazerGridView extends React.Component {
 
   getDefaultProps() {
     return {
       stargazers: Immutable.List()
     };
-  },
+  }
 
   render() {
+    if (!Immutable.List.isList(this.props.stargazers)) return 'No stargazers found';
+
     let items = this.props.stargazers
       .toArray()
-      .map(stargazer => <StargazerItem stargazer={stargazer} />);
+      .map(stargazer => <StargazerItem key={stargazer.get('id')} stargazer={stargazer} />);
 
     return (
       <div>
@@ -21,9 +23,9 @@ let StargazerGridView = React.createClass({
     );
   }
 
-});
+}
 
-let StargazerItem = React.createClass({
+class StargazerItem extends React.Component {
 
   render() {
     let { stargazer } = this.props;
@@ -40,6 +42,5 @@ let StargazerItem = React.createClass({
     );
   }
 
-});
+}
 
-export default StargazerGridView;

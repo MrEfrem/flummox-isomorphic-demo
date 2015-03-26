@@ -5,7 +5,7 @@ import StargazerGridHandler from './components/StargazerGridHandler';
 
 let Routes = (
   <Route name="app" path="/" handler={AppHandler}>
-    <Route name="stargazerGridHandler" path="/stargazers/:owner/:repo" handler={StargazerGridHandler} />
+    <Route name="stargazerGrid" path="/stargazers/:owner/:repo" handler={StargazerGridHandler} />
   </Route>
 );
 

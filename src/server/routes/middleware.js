@@ -10,7 +10,7 @@ import router from 'koa-router';
 
 export default function(app) {
   // Error handling
-  app.use(function *(next) {
+  app.use(function* (next) {
     try {
       yield next;
     } catch (error) {
