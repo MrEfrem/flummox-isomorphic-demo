@@ -3,12 +3,10 @@ import Immutable from 'immutable';
 
 export default class StargazersStore extends Store {
 
-  constructor(flux) {
+  constructor({ stargazerActions }) {
     super();
 
-    let stargazerActionIds = flux.getActionIds('stargazers');
-
-    this.register(stargazerActionIds.getStargazersByRepo, this.handleGetStargazersByRepo);
+    this.register(stargazerActions.getStargazersByRepo, this.handleGetStargazersByRepo);
 
     this.state = {
       stargazers: Immutable.Map(),

@@ -10,17 +10,15 @@ export default class StargazerGridView extends React.Component {
   }
 
   render() {
-    if (!Immutable.List.isList(this.props.stargazers)) return 'No stargazers found';
+    if (!Immutable.List.isList(this.props.stargazers)){
+      return <div>No stargazers found</div>;
+    }
 
     let items = this.props.stargazers
       .toArray()
       .map(stargazer => <StargazerItem key={stargazer.get('id')} stargazer={stargazer} />);
 
-    return (
-      <div>
-        {items}
-      </div>
-    );
+    return <div>{items}</div>;
   }
 
 }

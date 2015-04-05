@@ -8,7 +8,7 @@ import StargazerGridView from './StargazerGridView';
 
 export default class StargazerGrid extends React.Component {
 
-  static async routerWillRun(state, flux) {
+  static async routerWillRun({state, flux}) {
     let { owner, repo } = state.params;
     let stargazerActions = flux.getActions('stargazers');
 

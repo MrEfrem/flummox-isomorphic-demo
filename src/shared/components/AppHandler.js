@@ -31,7 +31,7 @@ export default class AppHandler extends React.Component {
         {linkFound}
         <div>
             <DocumentTitle title='Isomorphic Flummox App'>
-              <FluxComponent flux={this.props.flux} params={this.props.params}>
+              <FluxComponent {...this.props} key={this.props.pathname}>
                 <RouteHandler />
               </FluxComponent>
             </DocumentTitle>
