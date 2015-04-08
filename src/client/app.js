@@ -17,9 +17,18 @@ const router = Router.create({
 });
 
 const routerCallback = async (Handler, state) => {
-  const routeHandlerInfo = { state, flux };
+  const routeHandlerInfo = { state, flux, router };
 
-  await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
+  try {
+    await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
+  } catch( err ){
+    if( err.constructor.name === 'ErrorRedirect' ) {
+      router.transitionTo(err.message);
+      return;
+    } else {
+      throw err;
+    }
+  }
 
   React.render(
       <FluxComponent flux={flux}>
@@ -31,24 +40,3 @@ const routerCallback = async (Handler, state) => {
 
 // Render app
 router.run(routerCallback);
-
-// Intercept local route changes
-document.onclick = event => {
-  const { toElement: target } = event;
-
-  if (!target) return;
-
-  if (target.tagName !== 'A') return;
-
-  const href = target.getAttribute('href');
-
-  if (!href) return;
-
-  const resolvedHref = url.resolve(window.location.href, href);
-  const { host, path } = url.parse(resolvedHref);
-
-  if (host === window.location.host) {
-    event.preventDefault();
-    router.transitionTo(path);
-  }
-};

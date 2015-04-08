@@ -21,8 +21,7 @@ export default function(app) {
     const self = this;
     const flux = new Flux();
     flux.addListener('error', err => {
-      /*self.status = err.status || 500;
-      self.body = err.message;*/
+      /*self.status = err.status || 500;*/
       app.emit('error', err, this);
     });
 
@@ -32,11 +31,20 @@ export default function(app) {
       );
     });
 
-    const routeHandlerInfo = { state, flux };
+    const routeHandlerInfo = { state, flux, router };
 
-    yield performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
+    try {
+      yield performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
+    } catch( err ){
+      if( err.constructor.name === 'ErrorRedirect' ) {
+        this.redirect(err.message);
+        return;
+      } else {
+        throw err;
+      }
+    }
 
-    if( 500 != self.status ) {
+    if( self.status !== 500 ) {
       const appString = React.renderToString(
           <FluxComponent flux={flux}>
             <Handler {...state} />

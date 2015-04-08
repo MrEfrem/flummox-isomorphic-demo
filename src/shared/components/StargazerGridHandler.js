@@ -1,5 +1,5 @@
 import React from 'react';
-import { State } from 'react-router';
+import { State,Link } from 'react-router';
 import Immutable from 'immutable';
 import DocumentTitle from 'react-document-title';
 import FluxComponent from 'flummox/component';
@@ -19,15 +19,19 @@ export default class StargazerGrid extends React.Component {
     let { owner, repo } = this.props.params;
 
     return (
-      <DocumentTitle title='Isomorphic Flummox App - Stargazers'>
-        <FluxComponent connectToStores={{
-          stargazers: store => ({
-            stargazers: store.getStargazersByRepo(owner, repo)
-          })
-        }}>
-          <StargazerGridView />
-        </FluxComponent>
-      </DocumentTitle>
+        <div>
+          <Link to="app">Home</Link>
+          <br/>
+          <DocumentTitle title='Isomorphic Flummox App - Stargazers'>
+            <FluxComponent connectToStores={{
+              stargazers: store => ({
+                stargazers: store.getStargazersByRepo(owner, repo)
+              })
+            }}>
+              <StargazerGridView />
+            </FluxComponent>
+          </DocumentTitle>
+        </div>
     );
   }
 

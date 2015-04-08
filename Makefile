@@ -14,7 +14,7 @@ DEST_MIN_CSS = $(DEST_DIR_CSS)/app.min.css
 build: fast-js webpack minify-css
 
 # Watch for changes
-watch: fast-js-dev
+watch:
 	@NODE_ENV=development $(MAKE) -j5 watch-js dev-server webpack-server watch-css
 
 clean:
@@ -29,9 +29,6 @@ js: $(LIB_JS)
 $(LIB_JS): lib/%.js: src/%.js
 	mkdir -p $(dir $@)
 	$(BIN)/babel $< -o $@ $(BABEL_ARGS)
-
-fast-js-dev:
-	$(BIN)/babel src -d lib $(BABEL_ARGS)
 
 fast-js:
 	$(BIN)/babel src/server -d lib/server $(BABEL_ARGS)
@@ -59,9 +56,10 @@ $(DEST_CSS): $(SRC_CSS)
 	mkdir -p $(dir $@) && cat $(SRC_CSS) | $(BIN)/autoprefixer > $@
 
 $(DEST_MIN_CSS): $(DEST_CSS)
-	$(BIN)/cleancss $< > $@ && rm -f $<
+	$(BIN)/cleancss $< > $@
+	rm -f $<
 
 watch-css: $(SRC_CSS)
 	$(BIN)/watch "mkdir -p $(DEST_DIR_CSS) && cat $(SRC_CSS) | $(BIN)/autoprefixer > $(DEST_CSS) && $(BIN)/cleancss --source-map $(DEST_CSS) -o $(DEST_MIN_CSS)" $(SRC_DIR_CSS)
 
-.PHONY: clean fast-js public/js/app.js
+.PHONY: clean fast-js public/js/app.js watch watch-js
