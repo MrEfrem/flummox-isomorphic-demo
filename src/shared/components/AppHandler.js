@@ -1,6 +1,5 @@
 import React from 'react';
 import { RouteHandler, Link } from 'react-router';
-import DocumentTitle from 'react-document-title';
 import FluxComponent from 'flummox/component';
 
 export default class AppHandler extends React.Component {
@@ -30,11 +29,9 @@ export default class AppHandler extends React.Component {
         </header>
         {linkFound}
         <div>
-            <DocumentTitle title='Isomorphic Flummox App'>
-              <FluxComponent {...this.props} key={this.props.pathname}>
-                <RouteHandler />
-              </FluxComponent>
-            </DocumentTitle>
+            <FluxComponent {...this.props} key={this.props.pathname}>
+              <RouteHandler />
+            </FluxComponent>
         </div>
       </div>
     );

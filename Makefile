@@ -41,7 +41,7 @@ dev-server: $(LIB_JS)
 	nodemon ./lib/server/index.js
 
 webpack-server: $(LIB_JS)
-	node --harmony ./lib/server/webpack
+	node_modules/.bin/webpack-dev-server --config webpack.config.dev.js
 
 webpack: public/js/app.js
 

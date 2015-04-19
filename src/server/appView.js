@@ -7,7 +7,6 @@ import routes from '../shared/routes';
 import performRouteHandlerStaticMethod from '../shared/utils/performRouteHandlerStaticMethod';
 import DocumentTitle from 'react-document-title';
 
-
 export default function(app) {
   app.use(function *() {
     const router = Router.create({
@@ -36,7 +35,7 @@ export default function(app) {
     try {
       yield performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
     } catch( err ){
-      if( err.constructor.name === 'ErrorRedirect' ) {
+      if( err.name === 'ErrorRedirect' ) {
         this.redirect(err.message);
         return;
       } else {

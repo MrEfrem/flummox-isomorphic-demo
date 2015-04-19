@@ -22,7 +22,7 @@ const routerCallback = async (Handler, state) => {
   try {
     await performRouteHandlerStaticMethod(state.routes, 'routerWillRun', routeHandlerInfo);
   } catch( err ){
-    if( err.constructor.name === 'ErrorRedirect' ) {
+    if( err.name === 'ErrorRedirect' ) {
       router.transitionTo(err.message);
       return;
     } else {

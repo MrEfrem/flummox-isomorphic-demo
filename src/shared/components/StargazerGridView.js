@@ -3,12 +3,6 @@ import Immutable from 'immutable';
 
 export default class StargazerGridView extends React.Component {
 
-  getDefaultProps() {
-    return {
-      stargazers: Immutable.List()
-    };
-  }
-
   render() {
     if (!Immutable.List.isList(this.props.stargazers)){
       return <div>No stargazers found</div>;
@@ -22,6 +16,10 @@ export default class StargazerGridView extends React.Component {
   }
 
 }
+
+StargazerGridView.defaultProps = {
+  stargazers: Immutable.List()
+};
 
 class StargazerItem extends React.Component {
 
